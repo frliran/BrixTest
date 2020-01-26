@@ -1,0 +1,29 @@
+This solution includes several projects:
+
+Common Projects:
+  1. LiranBrixTest.Utilities
+  2. LiranBrixTest.Models
+
+Dependency Injection:
+  1. LiranBrixTest.Interfaces
+  2. LiranBrixTest.Implementations
+
+Runable Projects:
+  1. LiranBrixTest.CashierProcess
+  2. LiranBrixTest.CashierManger
+  
+In order to successfully run the program, please do as follows:
+1. Open cmd window in the root folder of the "LiranBrixTest.CashierProcess" project
+   and run the publish command as shown in the "Program.cs" file (dotnet publish -c Release -r win10-x64)
+   This should generate the "Release" folder with the published output of the process to run.
+2. Add the path for the "LiranBrixTest.CashierProcess" project to the "appsettings.json" file of the "LiranBrixTest.CashierManger"
+   to the "CashierProcessSettings.ProcessFilePath" entry.
+
+Flow:
+The "LiranBrixTest.CashierManger" program is a process that starts 5 processes (NOT THREADS!!!) of the "LiranBrixTest.CashierProcess" process
+The reason for why run processes and not a thread is obvious! A thread runs inside a process...
+
+All "LiranBrixTest.CashierProcess" processes listen to the "LiranBrixTest.CashierManger" process, so when it stops they also stop.
+Also, this is not implemented but it has a base, all "LiranBrixTest.CashierProcess" process registers itself in a database to close any open edges.
+
+This project has some explaining to do, so I'll be happy to discuss it.
